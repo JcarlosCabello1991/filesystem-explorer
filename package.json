@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/JcarlosCabello1991/filesystem-explorer/issues"
   },
-  "homepage": "https://github.com/JcarlosCabello1991/filesystem-explorer#readme"
+  "homepage": "https://github.com/JcarlosCabello1991/filesystem-explorer#readme",
+  "dependencies": {
+    "bootstrap-icons": "^1.8.2"
+  }
 }

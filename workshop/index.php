@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/main.css">
+    <script src="https://kit.fontawesome.com/a8609ee1f0.js" crossorigin="anonymous"></script>
     <title>File System</title>
 </head>
 <body>
@@ -15,11 +16,15 @@
         <div class="ibox float-e-margins">
             <div class="ibox-content">
                 <div class="file-manager">
-                    <h5>Show:</h5>
-                    <a href="#" class="file-control active">Ale</a>
-                    <a href="#" class="file-control">Documents</a>
-                    <a href="#" class="file-control">Audio</a>
-                    <a href="#" class="file-control">Images</a>
+                    <div class="buttons__container--aside">
+                        <input name="nameFileOrDirectory" class="input__search" placeholder="root/">
+                        <a href="#"><i class="fa-solid fa-magnifying-glass color__folder"></i></a>
+                        <div class="container__icons--folder">
+                            <a href="#"><i class="fa-solid fa-circle-plus color__folder"></i></a>
+                            <a href="#"><i class="fa-solid fa-trash-can color__folder"></i></a>
+                            <a href="#"><i class="fa-solid fa-pen color__folder"></i></a>
+                        </div>
+                    </div>
                     <div class="hr-line-dashed"></div>
                     <button class="btn btn-primary btn-block">Upload Files</button>
                     <div class="hr-line-dashed"></div>
