@@ -1,13 +1,30 @@
-body{margin-top:20px;
+body{
+    margin-top:20px;
     background:#eee;
     height: 100vh;
 }
 
-.row{
+.container{
+    display: flex;
+    flex-direction: row;
+}
+
+#body__container--flex{
     display: flex;
     flex-direction: row;
     justify-content: center;
+    flex-wrap: nowrap;
     gap: 2rem;
+    margin-top: 5rem;
+}
+
+#button__create--folder{
+    height: 1.125rem;
+    width: 1.125rem;
+    background-color:  transparent;
+    color:  rgb(235, 176, 67);
+    border: 0px solid;
+    padding: 0%;
 }
 
 .form__input{

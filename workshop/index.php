@@ -8,31 +8,26 @@
     <link rel="stylesheet" href="../assets/css/main.css">
     <script src="../assets/js/main.js"></script>
     <script src="https://kit.fontawesome.com/a8609ee1f0.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>File System</title>
 </head>
 <body>
 <div class="container">
-<div class="row">
+<div class="row" id="body__container--flex">
     <div class="col-md-3">
         <div class="ibox float-e-margins">
             <div class="ibox-content">
                 <div class="file-manager">
                     <div class="buttons__container--aside">
-<<<<<<< HEAD
-                        <form action="./directories/create-directory.php" method="POST">
-                        <input name="nameFileOrDirectory" class="input__search" placeholder="root/">
-                        <button type="submit" ><i class="fa-solid fa-magnifying-glass color__folder"></i></button>
-                        </form>
-                        <div class="container__icons--folder">
-                            <a href="./Directories/"><i class="fa-solid fa-circle-plus color__folder"></i></a>
-=======
                         <form action="./Directories/create-directory.php" method="POST" class="form__input">
                             <input name="nameFileOrDirectory" class="input__search" placeholder="root/">
                             <button type="submit"><i class="fa-solid fa-magnifying-glass color__folder"></i></button>
                         </form>
                         <div class="container__icons--folder">
-                            <a href="#"><i class="fa-solid fa-circle-plus color__folder" id="openDialog"></i></a>
->>>>>>> buttons
+                            <!-- <a href="#"><i class="fa-solid fa-circle-plus color__folder" id="openDialog"></i></a> -->
+                            <button type="button" id="button__create--folder" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <i class="fa-solid fa-circle-plus"></i>
+                            </button>
                             <a href="#"><i class="fa-solid fa-trash-can color__folder"></i></a>
                             <a href="#"><i class="fa-solid fa-pen color__folder"></i></a>
                         </div>
@@ -48,17 +43,10 @@
                     <div class="hr-line-dashed"></div>
                     <h5>Folders</h5>
                     <ul class="folder-list" style="padding: 0">
-                        <!-- <li><a href=""><i class="fa fa-folder"></i> Files</a></li>
-                        <li><a href=""><i class="fa fa-folder"></i> Pictures</a></li>
-                        <li><a href=""><i class="fa fa-folder"></i> Web pages</a></li>
-                        <li><a href=""><i class="fa fa-folder"></i> Illustrations</a></li>
-                        <li><a href=""><i class="fa fa-folder"></i> Films</a></li>
-                        <li><a href=""><i class="fa fa-folder"></i> Books</a></li> -->
                         <?php
                             $path = "./root";
                             
                             $countDirectories = count(scandir($path));
-                            echo $countDirectories;
                             for($i = 2; $i < $countDirectories; $i++){
                         ?>
                                 <li><a href=""><i class="fa fa-folde'"></i><?php echo scandir($path)[$i]; ?></a></li>
@@ -421,6 +409,23 @@
         </div>
         </div>
     </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
