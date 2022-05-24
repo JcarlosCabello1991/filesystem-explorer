@@ -1,8 +1,9 @@
-// const openDialog = document.getElementById("openDialog");
-// const dialog = document.getElementById("dialog");
-// console.log(openDialog);
-// openDialog.addEventListener("click", function(){
-//     console.log("hola");
-//     dialog.removeAttribute("close");
-//     dialog.setAttribute("open", "");
-// });
+let folders = document.querySelectorAll("[data]");
+
+console.log("hola");
+console.log(folders);
+Array.from(folders).forEach(fold => {
+    fold.addEventListener("click", function(){
+        console.log(fold.id);
+    })
+})

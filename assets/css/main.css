@@ -77,20 +77,28 @@ div.buttons__container--aside{
 }
 .folder-list li a {
   color: #666666;
-  display: block;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   padding: 5px 0;
+  width: 100%;
 }
-.folder-list li {
-  border-bottom: 1px solid #e7eaec;
-  display: block;
+
+li .color__folder{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.folder-list li i {
+
+.folder-list li{
+  display: grid;
+  grid-template-columns: 2fr 0.3fr 0.3fr;
   margin-right: 8px;
   color: #3d4d5d;
 }
 .category-list li a {
   color: #666666;
-  display: block;
+  display: flex;
   padding: 5px 0;
 }
 .category-list li {
