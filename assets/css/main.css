@@ -18,7 +18,7 @@ body{
     margin-top: 5rem;
 }
 
-#button__create--folder{
+#button__create--folder, #button__delete--folder{
     height: 1.125rem;
     width: 1.125rem;
     background-color:  transparent;
@@ -82,6 +82,10 @@ div.buttons__container--aside{
   align-items: center;
   padding: 5px 0;
   width: 100%;
+}
+
+#button__delete--folder{
+    padding: 8px 0;
 }
 
 li .color__folder{
