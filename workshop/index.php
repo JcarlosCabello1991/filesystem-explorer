@@ -17,10 +17,12 @@
             <div class="ibox-content">
                 <div class="file-manager">
                     <div class="buttons__container--aside">
+                        <form action="./directories/create-directory.php" method="POST">
                         <input name="nameFileOrDirectory" class="input__search" placeholder="root/">
-                        <a href="#"><i class="fa-solid fa-magnifying-glass color__folder"></i></a>
+                        <button type="submit" ><i class="fa-solid fa-magnifying-glass color__folder"></i></button>
+                        </form>
                         <div class="container__icons--folder">
-                            <a href="#"><i class="fa-solid fa-circle-plus color__folder"></i></a>
+                            <a href="./Directories/"><i class="fa-solid fa-circle-plus color__folder"></i></a>
                             <a href="#"><i class="fa-solid fa-trash-can color__folder"></i></a>
                             <a href="#"><i class="fa-solid fa-pen color__folder"></i></a>
                         </div>
