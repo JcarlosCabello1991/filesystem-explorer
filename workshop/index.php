@@ -36,6 +36,13 @@
                         <li><a href=""><i class="fa fa-folder"></i> Illustrations</a></li>
                         <li><a href=""><i class="fa fa-folder"></i> Films</a></li>
                         <li><a href=""><i class="fa fa-folder"></i> Books</a></li>
+                        <?php
+                            $path = "../root";
+                            $countDirectories = count($path);
+                            for($i = 0; $i < $countDirectories; $i++){
+                                echo "<li><a href=""><i class="'fa fa-folder'"></i>".scandir($path[$i])."</a></li>";
+                            }
+                        ?>
                     </ul>
                     <div class="clearfix"></div>
                 </div>
