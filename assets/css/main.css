@@ -10,6 +10,12 @@ body{margin-top:20px;
     gap: 2rem;
 }
 
+.form__input{
+    display: flex;
+    flex-direction: row;
+    gap: 0.2rem;
+}
+
 div.buttons__container--aside{
     display: flex;
     justify-content: flex-start;
