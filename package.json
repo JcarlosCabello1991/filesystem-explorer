@@ -1,0 +1,20 @@
+{
+  "name": "filesystem-explorer",
+  "version": "1.0.0",
+  "description": "`#html` `#css` `#js` `#php` `#master-in-software-engineering`",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JcarlosCabello1991/filesystem-explorer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JcarlosCabello1991/filesystem-explorer/issues"
+  },
+  "homepage": "https://github.com/JcarlosCabello1991/filesystem-explorer#readme"
+}
