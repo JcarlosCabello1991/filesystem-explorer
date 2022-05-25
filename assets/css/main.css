@@ -2,6 +2,10 @@ body{
     margin-top:20px;
     background:#eee;
     height: 100vh;
+    background-image: url("../img/102477.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .container{
