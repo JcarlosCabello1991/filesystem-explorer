@@ -84,7 +84,24 @@
                                 <i class="fa fa-file"></i>
                             </div>
                             <div class="file-name">
-                                <?php echo scandir($path)[$i]; ?>
+                                <?php echo scandir($path)[$i]; 
+                                      if((date("F d Y H:i:s.",filectime($path."/".scandir($path)[$i]))) === (date("F d Y H:i:s.",filemtime($path."/".scandir($path)[$i])))){
+                                        echo "<br>Creation: ".date("F d Y H:i:s.",filectime($path."/".scandir($path)[$i]));
+                                      }else{
+                                        echo "<br>Modified: ".date("F d Y H:i:s.",filemtime($path."/".scandir($path)[$i]));
+                                      }
+                                      $size = filesize($path."/".scandir($path)[$i]);
+                                      $bytes = number_format($size / 1024, 2);
+                                      if ($size >= 1048576)
+                                        {
+                                            $bytes = number_format($size / 1048576, 2) . ' MB';
+                                            echo "<br>".$bytes."MB";
+                                        }
+                                        else if ($size >= 1024)
+                                        {
+                                            echo "<br>".$bytes."KB";
+                                        }                                    
+                                ?>
                                 <br>
                                 <a href="<?php echo "./Directories/delete.php?path=".$pathDir.scandir($path)[$i];?>"><i id="<?php echo scandir($path)[$i]."1" ?>" class="fa-solid fa-trash-can color__folder" data="trash"></i></a>
                                 <small>Added: Jan 11, 2014</small>
