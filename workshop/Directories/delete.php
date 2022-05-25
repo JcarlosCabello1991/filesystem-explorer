@@ -1,8 +1,11 @@
 <?php
     $path = $_GET["path"];
-
+    print_r(explode("/",$path)[count(explode("/",$path))-1]);
+    include("./checkPath.php");
+    $path = ".".checkPath()."/".explode("/",$path)[count(explode("/",$path))-1];
     print_r($path);
     if(is_dir($path)){
+        print_r($path);
         rmdir($path);
         header("Location: ../index.php");
     }else{

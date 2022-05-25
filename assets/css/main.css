@@ -35,11 +35,12 @@ body{
     display: flex;
     flex-direction: row;
     gap: 0.2rem;
+    margin: 0px;
 }
 
-div.buttons__container--aside{
+#buttons__container--aside{
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     gap: 0.5rem;
     left: 0rem;

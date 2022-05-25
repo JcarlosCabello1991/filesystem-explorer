@@ -1,3 +1,8 @@
+<?php
+    require_once("./Directories/checkPath.php");
+    $path = checkPath();
+    print_r("nuevo".$path);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,30 +24,31 @@
         <div class="ibox float-e-margins">
             <div class="ibox-content">
                 <div class="file-manager">
-                    <div class="buttons__container--aside">
+                    <div class="buttons__container--aside" id="buttons__container--aside">
                         <form action="#" method="POST" class="form__input">
                             <input name="nameFileOrDirectory" class="input__search" placeholder="root/">
                             <button type="submit"><i class="fa-solid fa-magnifying-glass color__folder"></i></button>
                         </form>
                         <div class="container__icons--folder">
                             <button type="button" id="button__create--folder" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                <i class="fa-solid fa-circle-plus"></i>
+                                <i class="fa-solid fa-circle-plus color__folder"></i>
                             </button>
                         </div>
                     </div>
                     <div class="hr-line-dashed"></div>
                     <button class="btn btn-primary btn-block">Upload Files</button>
                     <div class="hr-line-dashed"></div>
-                    <h5>Folders</h5>
+                    <h5><?php print_r($path); ?> <a href="<?php echo "./Directories/backFolder.php?directory=".$path?>"><i class="fa-solid fa-circle-left color__folder"></i></a></h5>
                     <ul class="folder-list" style="padding: 0">
                         <?php
-                            $path = "./root";
-                            
+                            print_r($path);
+                            //$path = "./root/".$path;
                             $countDirectories = count(scandir($path));
+                            $pathDir = "../root/"; 
                             for($i = 2; $i < $countDirectories; $i++){
-                                $pathDir = "../root/"
+                                // $pathDir = "../root/";
                         ?>
-                                <li><a href=""><?php echo scandir($path)[$i]; ?></a><a href="<?php echo "./Directories/delete.php?path=".$pathDir.scandir($path)[$i];?>"><i id="<?php echo scandir($path)[$i] ?>" class="fa-solid fa-trash-can color__folder" data="trash"></i></a>
+                                <li><a href=" <?php echo "./Directories/navigate.php?directory=".scandir($path)[$i] ?>"><?php echo scandir($path)[$i]; ?></a><a href="<?php echo "./Directories/delete.php?path=".$pathDir.scandir($path)[$i];?>"><i id="<?php echo scandir($path)[$i] ?>" class="fa-solid fa-trash-can color__folder" data="trash"></i></a>
                                 <button type="button" id="button__delete--folder" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1">
                                 <i id ="<?php echo "./Directories/modify.php?path=".$pathDir.scandir($path)[$i]  ?>" class="fa-solid fa-pen color__folder" data-value="<?php echo "./Directories/delete.php?path=".$pathDir.scandir($path)[$i] ?>"></i>
                                 </button>
