@@ -2,6 +2,7 @@ body{
     margin-top:20px;
     background:#eee;
     height: 100vh;
+    width: 100vw;
 }
 
 .container{
@@ -10,7 +11,8 @@ body{
 }
 
 #body__container--flex{
-    display: flex;
+    display: grid !important;
+    grid-template-columns: 1fr 4fr !important;
     flex-direction: row;
     justify-content: center;
     flex-wrap: nowrap;
@@ -62,6 +64,11 @@ body{
     width: fit-content;
     height: fit-content;
     width: 80rem;
+}
+
+#col-md-3{
+  display: grid;
+  grid-template-columns: 2fr 4fr;
 }
 
 .file-box {

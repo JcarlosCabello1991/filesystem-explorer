@@ -13,7 +13,7 @@
     header("Location: ../index.php");
     echo "File already exists";
   } else {
-    print_r("Creando dir: ".mkdir($newPath, 0700));
+    print_r("Creando dir: ".mkdir($newPath, 0777));
     header("Location: ../index.php");
     echo "Directory succesfully created)";
   }
