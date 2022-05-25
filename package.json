@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/JcarlosCabello1991/filesystem-explorer#readme",
   "dependencies": {
-    "bootstrap-icons": "^1.8.2"
+    "bootstrap-icons": "^1.8.2",
+    "normalize.css": "^8.0.1"
   }
 }
