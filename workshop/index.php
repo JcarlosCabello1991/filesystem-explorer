@@ -25,9 +25,9 @@
             <div class="ibox-content">
                 <div class="file-manager">
                     <div class="buttons__container--aside" id="buttons__container--aside">
-                        <form action="#" method="POST" class="form__input">
+                        <form action="./Directories/search.php" method="POST" class="form__input">
                             <input name="nameFileOrDirectory" class="input__search" placeholder="root/">
-                            <button type="submit"><i class="fa-solid fa-magnifying-glass color__folder"></i></button>
+                            <button type="submit" name="submitSearch"><i class="fa-solid fa-magnifying-glass color__folder"></i></button>
                         </form>
                         <div class="container__icons--folder">
                             <button type="button" id="button__create--folder" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -69,6 +69,15 @@
         <div class="row">
             <div class="col-lg-12">
                 <?php
+                
+                if(isset($_SESSION["fileToSearch"])){
+                    print_r(getSearch()); 
+                    if(getSearch()!= ""){
+                        require_once("./Directories/search.php");
+                        echo "hola es una prueba";
+                        setSearch("");
+                    }        
+                }           
                     $countDirectories = count(scandir($path));
                     $pathDir = "../root/"; 
                     print_r("<br><br>".$path);
@@ -84,6 +93,10 @@
                                 <i class="fa fa-file"></i>
                             </div>
                             <div class="file-name">
+                                <?php
+                                    include("./Directories/search.php");
+                                    showMatches();
+                                ?>
                                 <?php echo scandir($path)[$i]; 
                                       if((date("F d Y H:i:s.",filectime($path."/".scandir($path)[$i]))) === (date("F d Y H:i:s.",filemtime($path."/".scandir($path)[$i])))){
                                         echo "<br>Creation: ".date("F d Y H:i:s.",filectime($path."/".scandir($path)[$i]));

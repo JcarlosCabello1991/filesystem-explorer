@@ -83,4 +83,14 @@ function logOutSession(){
     session_destroy();
     header("Location:./index.php");
 }
+
+function setSearch($value){
+    
+    $_SESSION["fileToSearch"] = $value;
+}
+
+function getSearch(){
+    return $_SESSION["fileToSearch"];
+}
+
 ?>
