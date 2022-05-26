@@ -84,13 +84,17 @@ function logOutSession(){
     header("Location:./index.php");
 }
 
-function setSearch($value){
-    
-    $_SESSION["fileToSearch"] = $value;
+function setSearch($value){    
+    session_start();
+    if(isset($_SESSION["fileToSearch"])){
+        $_SESSION["fileToSearch"] = $value;
+    }else{
+        $_SESSION["fileToSearch"] = "";
+    }
 }
 
 function getSearch(){
-    return $_SESSION["fileToSearch"];
+    return $_SESSION;
 }
 
 ?>
