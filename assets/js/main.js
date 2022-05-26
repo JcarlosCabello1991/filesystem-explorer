@@ -17,6 +17,7 @@ iconModify.forEach(icon => {
 button.addEventListener("click", function(){
     divPrueba.style.display = "flex";
     divPrueba1.style.display = "none";
+    console.log(("hola"));
 })
 
 
