@@ -3,9 +3,11 @@ function checkPath(){
     print_r("entro");
     session_start();
     if(isset($_SESSION["currentDirectory"])){
+        $_SESSION["search"] = getSearch();
         return getPath();
     }else{
         $_SESSION["currentDirectory"] = "./root";
+        $_SESSION["search"] = "";
         return $_SESSION["currentDirectory"];
     }
 }
@@ -94,7 +96,15 @@ function setSearch($value){
 }
 
 function getSearch(){
-    return $_SESSION;
+    return $_SESSION["search"];
 }
 
+function checkSearch(){
+    if(isset($_SESSION["search"])){
+        return getSearch();
+    }else{
+        $_SESSION["search"] = "";
+        return $_SESSION["search"];
+    }
+}
 ?>

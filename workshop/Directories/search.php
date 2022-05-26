@@ -1,12 +1,11 @@
 <?php
-include("./index.php");
+include("./checkPath.php");
 $path = "../root/";
 $fileToSearch = $_POST["nameFileOrDirectory"];
-prueba($fileToSearch);
 setSearch($fileToSearch);
 $files = glob($fileToSearch);
 //print_r($files);
-
+return getMatches($fileToSearch);
 //First obtain all the repositories and files for each level from root folder
 print_r("FILETOSEARCH".$fileToSearch);
 // dirtree("../root/");
@@ -18,12 +17,14 @@ function show(){
 }
 function dirtree($dir, $regex='', $ignoreEmpty=false, $fileToSearch)
 {
+    //session_start();
     if (!$dir instanceof DirectoryIterator) {
         $dir = new DirectoryIterator((string)$dir);
     }
     $dirs  = array();
     $files = array();
     $array = array();
+    $_SESSION["matches"] = array();
     foreach ($dir as $node) {
         if ($node->isDir() && !$node->isDot()) {
             $tree = dirtree($node->getPathname(), $regex, $ignoreEmpty, $fileToSearch);
@@ -34,7 +35,9 @@ function dirtree($dir, $regex='', $ignoreEmpty=false, $fileToSearch)
                 echo "<br>";
                 if($fileToSearch == $node->getFilename()){
                     echo "AAAAAAA<li>".$fileToSearch."</li>";
-                    array_push($array, "AAAAAAA<li>".$fileToSearch."</li>");
+                    //array_push($array, $fileToSearch);
+                    array_push($_SESSION["matches"], $fileToSearch);
+                    var_dump($_SESSION["matches"]);
                 }
             }
         } elseif ($node->isFile()) {
@@ -44,22 +47,21 @@ function dirtree($dir, $regex='', $ignoreEmpty=false, $fileToSearch)
                 var_dump($dirs);
                 if($fileToSearch == $name){
                     echo "AAAAAAA<li>".$fileToSearch."</li>";
-                    array_push($array, "AAAAAAA<li>".$fileToSearch."</li>");
+                    //array_push($array, $fileToSearch);//metemos la coincidencia en el array
+                    array_push($_SESSION["matches"], $fileToSearch);
+                    var_dump($_SESSION["matches"]);
                 }
             }
         }
     }
     asort($dirs);
     sort($files);
-    echo "<br>";
-    // array_push($array, $dirs);
-    // array_push($array, $files);
-    // var_dump(array_merge($dirs, $files));
-    // $tree1 = array_merge($dirs, $files);
-    // foreach ($array as $node) {
-    //     var_dump($node);
-    // }
-    return $array;
+    var_dump($_SESSION["matches"]);
+    header("Location: ../index.php");
+}
+
+function getMatches($fileto){
+    var_dump(dirtree("../root/", $regex='', $ignoreEmpty=false, $fileto));
 }
 
 function showMatches($fileToSearch){
@@ -75,33 +77,49 @@ function showMatches($fileToSearch){
             echo "AAAAAAA<li>".$fileToSearch."</li>";
         }
     }
-    //return "<p>PRUEBA HOLA</p>";
     return $arrayDir;
-    //header("Location: ../index.php");
 }
 
-// function showMatches($fileToSearch){
-//     dirtree("../root/");
-//     $files = glob($fileToSearch);
-//     var_dump(glob($fileToSearch)); echo "<br>";
-
-//     foreach ($files as $file) {
-
-//         echo $file."<br>";
-
-//     }
-
-// }
-
-// function searchFiles($path){
-//     $arrayMatches = [];
-//     $dir = new RecursiveDirectoryIterator(realpath($path), RecursiveDirectoryIterator::SKIP_DOTS);
-//     $it = new RecursiveIteratorIterator($dir);
-
-//     foreach($it as $file){
-//         array_push($arrayMatches, $file->getRealPath());
-//     }
-//     var_dump($arrayMatches);
-//     //return $arrayMatches;
-// }
+function getFiles($arrayFiles){
+    for($arrayFiles as $fil){
+        return ""
+    }
+}
 ?>
+
+<div class="file-box">
+        <div class="file">
+            <a href="#">
+                <span class="corner"></span>
+
+                <div class="icon">
+                    <i class="fa fa-file"></i>
+                </div>
+                <div class="file-name">
+                    
+                    <?php echo scandir($path)[$i]; 
+                          if((date("F d Y H:i:s.",filectime($path."/".scandir($path)[$i]))) === (date("F d Y H:i:s.",filemtime($path."/".scandir($path)[$i])))){
+                            echo "<br>Creation: ".date("F d Y H:i:s.",filectime($path."/".scandir($path)[$i]));
+                          }else{
+                            echo "<br>Modified: ".date("F d Y H:i:s.",filemtime($path."/".scandir($path)[$i]));
+                          }
+                          $size = filesize($path."/".scandir($path)[$i]);
+                          $bytes = number_format($size / 1024, 2);
+                          if ($size >= 1048576)
+                            {
+                                $bytes = number_format($size / 1048576, 2) . ' MB';
+                                echo "<br>".$bytes."MB";
+                            }
+                            else if ($size >= 1024)
+                            {
+                                echo "<br>".$bytes."KB";
+                            }                                    
+                    ?>
+                    <br>
+                    <a href="<?php echo "./Directories/delete.php?path=".$pathDir.scandir($path)[$i];?>"><i id="<?php echo scandir($path)[$i]."1" ?>" class="fa-solid fa-trash-can color__folder" data="trash"></i></a>
+                    <small>Added: Jan 11, 2014</small>
+                </div>
+            </a>
+        </div>
+
+    </div>

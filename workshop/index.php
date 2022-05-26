@@ -1,5 +1,8 @@
 <?php
     require_once("./Directories/checkPath.php");
+    if(checkSearch()!=""){
+        include("./Directories/search.php");
+    }
     $path = checkPath();
     print_r("nuevo".$path);
 ?>
@@ -25,7 +28,7 @@
             <div class="ibox-content">
                 <div class="file-manager">
                     <div class="buttons__container--aside" id="buttons__container--aside">
-                        <form action="./Directories/search.php" method="POST" class="form__input">
+                         <form action="./Directories/search.php" method="POST" class="form__input"><!--./Directories/search.php -->
                             <input name="nameFileOrDirectory" class="input__search" placeholder="root/">
                             <button type="submit" name="submitSearch" id="buttonPrueba"><i class="fa-solid fa-magnifying-glass color__folder"></i></button>
                         </form>
@@ -70,26 +73,49 @@
             <div class="col-lg-12">
                 <div id="prueba">
                 <?php
+                if(isset($_SESSION["matches"])){
+                    if($_SESSION["matches"]!=""){
+                        echo "EXISTO";
+                        var_dump($_SESSION["matches"]);
+                        for($_SESSION["matches"] as $fil){
+                        ?>
+
+                        
+                        <?php
+                        }
+                    }else{
+                        echo "NO EXISTO1";
+                    }
+                }else{
+                    echo "NO EXISTO";
+                }
+                if(checkSearch()!=""){
+                    echo show();
+                }
+                // echo show();   
                 function prueba($var){
-                include("./Directories/search.php");
+                    echo"HOLLAAAAAAAAA";
+                    include("./Directories/search.php");
+                    echo dirtree("../root/", $regex='', $ignoreEmpty=false, $var);
+                    echo show();
+                }
                 // $value = getSearch();
                 // var_dump($value);
-                echo show();
                 //var_dump(showMatches("SCHEMA.png"));
-                //if(isset($_SESSION["fileToSearch"])){
+                if(isset($_SESSION["search"]) && $_SESSION["search"]!= ""){
                     echo "ENTRO<br>";
                     print_r(getSearch()); 
                     if(getSearch()!= ""){
-                        require_once("./Directories/search.php");
+                    //     require_once("./Directories/search.php");
                         echo "hola es una prueba";
                         //setSearch("");
                     }        
-                //}else{
+                }else{
                     echo "no entro<br>";
                     print_r("GET SERACH".getSearch()); 
-                    var_dump($_SESSION["fileToSearch"]);
-                //}
+                    var_dump($_SESSION["search"]);
                 }
+                
                 ?>
                 </div>
                 <div id="prueba1">
