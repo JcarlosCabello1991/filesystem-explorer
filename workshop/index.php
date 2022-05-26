@@ -5,6 +5,7 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,34 +15,41 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="../assets/js/main.js" defer></script>
     <script src="https://kit.fontawesome.com/a8609ee1f0.js" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="../assets/css/main.css">
     <title>File System</title>
 </head>
+
 <body>
-<div class="container">
-<div class="ro" id="body__container--flex">
-    <div class="col-md-3" >
-        <div class="ibox float-e-margins">
-            <div class="ibox-content">
-                <div class="file-manager">
-                    <div class="buttons__container--aside" id="buttons__container--aside">
-                        <form action="./Directories/search.php" method="POST" class="form__input">
-                            <input name="nameFileOrDirectory" class="input__search" placeholder="root/">
-                            <button type="submit" name="submitSearch"><i class="fa-solid fa-magnifying-glass color__folder"></i></button>
-                        </form>
-                        <div class="container__icons--folder">
-                            <button type="button" id="button__create--folder" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                <i class="fa-solid fa-circle-plus color__folder"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="hr-line-dashed"></div>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">Upload Files</button>
-                    <div class="hr-line-dashed"></div>
-                    <h5><?php print_r($path); ?> <a href="<?php echo "./Directories/backFolder.php?directory=".$path?>"><i class="fa-solid fa-circle-left color__folder"></i></a></h5>
-                    <ul class="folder-list" style="padding: 0">
-                        <?php
+    <div class="container">
+        <div class="ro" id="body__container--flex">
+            <div class="col-md-3">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                        <div class="file-manager">
+                            <div class="buttons__container--aside" id="buttons__container--aside">
+                                <form action="./Directories/search.php" method="POST" class="form__input">
+                                    <input name="nameFileOrDirectory" class="input__search" placeholder="root/">
+                                    <button type="submit" name="submitSearch" id="buttonPrueba"><i
+                                            class="fa-solid fa-magnifying-glass color__folder"></i></button>
+                                </form>
+                                <div class="container__icons--folder">
+                                    <button type="button" id="button__create--folder" class="btn btn-primary"
+                                        data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <i class="fa-solid fa-circle-plus color__folder"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal2">Upload Files</button>
+                            <div class="hr-line-dashed"></div>
+                            <h5><?php print_r($path); ?> <a
+                                    href="<?php echo "./Directories/backFolder.php?directory=".$path?>"><i
+                                        class="fa-solid fa-circle-left color__folder"></i></a></h5>
+                            <ul class="folder-list" style="padding: 0">
+                                <?php
                             //print_r($path);
                             //$path = "./root/".$path;
                             $countDirectories = count(scandir($path));
@@ -51,55 +59,76 @@
                                 if(is_dir($path."/".scandir($path)[$i])){
                                     echo "<br>";print_r($path."/".scandir($path)[$i]);
                         ?>
-                                <li><a href=" <?php echo "./Directories/navigate.php?directory=".scandir($path)[$i] ?>"><?php echo scandir($path)[$i]; ?></a><a href="<?php echo "./Directories/delete.php?path=".$pathDir.scandir($path)[$i];?>"><i id="<?php echo scandir($path)[$i] ?>" class="fa-solid fa-trash-can color__folder" data="trash"></i></a>
-                                <button type="button" id="button__delete--folder" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-                                <i id ="<?php echo "./Directories/modify.php?path=".$pathDir.scandir($path)[$i]  ?>" class="fa-solid fa-pen color__folder" data-value="<?php echo "./Directories/delete.php?path=".$pathDir.scandir($path)[$i] ?>"></i>
-                                </button>
+                                <li><a
+                                        href=" <?php echo "./Directories/navigate.php?directory=".scandir($path)[$i] ?>"><?php echo scandir($path)[$i]; ?></a><a
+                                        href="<?php echo "./Directories/delete.php?path=".$pathDir.scandir($path)[$i];?>"><i
+                                            id="<?php echo scandir($path)[$i] ?>"
+                                            class="fa-solid fa-trash-can color__folder" data="trash"></i></a>
+                                    <button type="button" id="button__delete--folder" class="btn btn-primary"
+                                        data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                                        <i id="<?php echo "./Directories/modify.php?path=".$pathDir.scandir($path)[$i]  ?>"
+                                            class="fa-solid fa-pen color__folder"
+                                            data-value="<?php echo "./Directories/delete.php?path=".$pathDir.scandir($path)[$i] ?>"></i>
+                                    </button>
                                 </li>
-                        <?php
+                                <?php
                                 }
                             }
                         ?>
-                    </ul>
+                            </ul>
 
-                    <div class="clearfix"></div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="col-md-9 animated fadeInRight">
-        <div class="row">
-            <div class="col-lg-12">
-                <?php
-                
-                if(isset($_SESSION["fileToSearch"])){
+            <div class="col-md-9 animated fadeInRight">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div id="prueba">
+                            <?php
+                function prueba($var){
+                include("./Directories/search.php");
+                // $value = getSearch();
+                // var_dump($value);
+                echo show();
+                //var_dump(showMatches("SCHEMA.png"));
+                //if(isset($_SESSION["fileToSearch"])){
+                    echo "ENTRO<br>";
                     print_r(getSearch()); 
                     if(getSearch()!= ""){
                         require_once("./Directories/search.php");
                         echo "hola es una prueba";
-                        setSearch("");
+                        //setSearch("");
                     }        
-                }           
+                //}else{
+                    echo "no entro<br>";
+                    print_r("GET SERACH".getSearch()); 
+                    var_dump($_SESSION["fileToSearch"]);
+                //}
+                }
+                ?>
+                        </div>
+                        <div id="prueba1">
+                            <?php      
                     $countDirectories = count(scandir($path));
                     $pathDir = "../root/"; 
                     print_r("<br><br>".$path);
                         for($i = 2; $i < $countDirectories; $i++){
                             if(!is_dir($path."/".scandir($path)[$i])){
                 ?>
-                <div class="file-box">
-                    <div class="file">
-                        <a href="#">
-                            <span class="corner"></span>
+                        </div>
+                        <div class="file-box">
+                            <div class="file">
+                                <a href="#">
+                                    <span class="corner"></span>
 
-                            <div class="icon">
-                                <i class="fa fa-file"></i>
-                            </div>
-                            <div class="file-name">
-                                <?php
-                                    include("./Directories/search.php");
-                                    showMatches();
-                                ?>
-                                <?php echo scandir($path)[$i]; 
+                                    <div class="icon">
+                                        <i class="fa fa-file"></i>
+                                    </div>
+                                    <div class="file-name">
+
+                                        <?php echo scandir($path)[$i]; 
                                       if((date("F d Y H:i:s.",filectime($path."/".scandir($path)[$i]))) === (date("F d Y H:i:s.",filemtime($path."/".scandir($path)[$i])))){
                                         echo "<br>Creation: ".date("F d Y H:i:s.",filectime($path."/".scandir($path)[$i]));
                                       }else{
@@ -117,19 +146,22 @@
                                             echo "<br>".$bytes."KB";
                                         }                                    
                                 ?>
-                                <br>
-                                <a href="<?php echo "./Directories/delete.php?path=".$pathDir.scandir($path)[$i];?>"><i id="<?php echo scandir($path)[$i]."1" ?>" class="fa-solid fa-trash-can color__folder" data="trash"></i></a>
-                                <small>Added: Jan 11, 2014</small>
+                                        <br>
+                                        <a
+                                            href="<?php echo "./Directories/delete.php?path=".$pathDir.scandir($path)[$i];?>"><i
+                                                id="<?php echo scandir($path)[$i]."1" ?>"
+                                                class="fa-solid fa-trash-can color__folder" data="trash"></i></a>
+                                        <small>Added: Jan 11, 2014</small>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
-                    </div>
 
-                </div>
-                <?php
+                        </div>
+                        <?php
                         }
                     }
                 ?>
-                <!-- <div class="file-box">
+                        <!-- <div class="file-box">
                     <div class="file">
                         <a href="#">
                             <span class="corner"></span>
@@ -455,63 +487,66 @@
                     </a>
                 </div> -->
 
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create Directory</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="./Directories/create-directory.php" method="POST">
+                    <input name="nameFileOrDirectory" placeholder="/root/">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Create Directory</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <form action="./Directories/create-directory.php" method="POST">
-        <input name="nameFileOrDirectory" placeholder="/root/">
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Send</button>
+    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modify directory</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="./Directories/modify.php" method="GET" id="form-modify">
+                    <input id="oldPath" name="oldPath" placeholder="/root/" display="none">
+                    <input name="pathtoModify" placeholder="/root/" required>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </div>
+                </form>
+            </div>
         </div>
-      </form>
     </div>
-  </div>
-</div>
-<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modify directory</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <form action="./Directories/modify.php" method="GET" id="form-modify" >
-        <input id="oldPath" name="oldPath" placeholder="/root/" display="none">
-        <input name="pathtoModify" placeholder="/root/" required>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Send</button>
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Select your file</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="./Directories/upload.php" method="POST" id="form-modify" enctype="multipart/form-data">
+                    <input type="file" name="fileSelected" placeholder="select a file">
+
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" name="submit">Send</button>
+
+                </form>
+            </div>
         </div>
-      </form>
     </div>
-  </div>
-</div>
-<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Select your file</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <form action="./Directories/upload.php" method="POST" id="form-modify" enctype="multipart/form-data">
-        <input type="file" name="fileSelected" placeholder="select a file">
-        
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" name="submit">Send</button>
-        
-      </form>
-    </div>
-  </div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
 </body>
+
 </html>
