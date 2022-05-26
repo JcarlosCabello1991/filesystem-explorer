@@ -77,9 +77,47 @@
                     if($_SESSION["matches"]!=""){
                         echo "EXISTO";
                         var_dump($_SESSION["matches"]);
-                        for($_SESSION["matches"] as $fil){
+                        echo "ELEMENTOS".count($_SESSION["matches"]);
+                        for($j=0; $j < count($_SESSION["matches"]); $j+=2){
                         ?>
+                        <div class="file-box">
+        <div class="file">
+            <a href="#">
+                <span class="corner"></span>
 
+                <div class="icon">
+                    <i class="fa fa-file"></i>
+                </div>
+                <div class="file-name">
+                    
+                    <?php //echo scandir($path)[$i];
+                    echo $_SESSION["matches"][$j+1];
+                            var_dump(explode("/",$_SESSION["matches"][$j+1])); 
+                          if((date("F d Y H:i:s.",filectime($_SESSION["matches"][$j+1]))) === (date("F d Y H:i:s.",filemtime($_SESSION["matches"][$j+1])))){
+                            echo "<br>Creation: ".date("F d Y H:i:s.",filectime($_SESSION["matches"][$j+1]));
+                          }else{
+                            echo "<br>Modified: ".date("F d Y H:i:s.",filemtime($_SESSION["matches"][$j+1]));
+                          }
+                          $size = filesize($_SESSION["matches"][$j+1]);
+                          $bytes = number_format($size / 1024, 2);
+                          if ($size >= 1048576)
+                            {
+                                $bytes = number_format($size / 1048576, 2) . ' MB';
+                                echo "<br>".$bytes."MB";
+                            }
+                            else if ($size >= 1024)
+                            {
+                                echo "<br>".$bytes."KB";
+                            }                                    
+                    ?>
+                    <br>
+                    <a href="<?php echo "./Directories/delete.php?path=".$_SESSION["matches"][$j+1];?>"><i id="<?php echo $_SESSION["matches"][$j+1]."1" ?>" class="fa-solid fa-trash-can color__folder" data="trash"></i></a>
+                    <small>Added: Jan 11, 2014</small>
+                </div>
+            </a>
+        </div>
+
+    </div>
                         
                         <?php
                         }
