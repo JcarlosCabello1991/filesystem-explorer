@@ -1,8 +1,5 @@
 <?php
     require_once("./Directories/checkPath.php");
-    if(checkSearch()!=""){
-        include("./Directories/search.php");
-    }
     $path = checkPath();
     print_r("nuevo".$path);
 ?>
@@ -29,7 +26,7 @@
             <div class="ibox-content">
                 <div class="file-manager">
                     <div class="buttons__container--aside" id="buttons__container--aside">
-                         <form action="./Directories/search.php" method="POST" class="form__input"><!--./Directories/search.php -->
+                        <form action="./Directories/search.php" method="POST" class="form__input">
                             <input name="nameFileOrDirectory" class="input__search" placeholder="root/">
                             <button type="submit" name="submitSearch"><i class="fa-solid fa-magnifying-glass color__folder"></i></button>
                         </form>
@@ -74,42 +71,11 @@
         <div class="row">
             <div class="col-lg-12">
                 <?php
-                if(isset($_SESSION["matches"])){
-                    if($_SESSION["matches"]!=""){
-                        echo "EXISTO";
-                        var_dump($_SESSION["matches"]);
-                        for($_SESSION["matches"] as $fil){
-                        ?>
-
-                        
-                        <?php
-                        }
-                    }else{
-                        echo "NO EXISTO1";
-                    }
-                }else{
-                    echo "NO EXISTO";
-                }
-                if(checkSearch()!=""){
-                    echo show();
-                }
-                // echo show();   
-                function prueba($var){
-                    echo"HOLLAAAAAAAAA";
-                    include("./Directories/search.php");
-                    echo dirtree("../root/", $regex='', $ignoreEmpty=false, $var);
-                    echo show();
-                }
-                // $value = getSearch();
-                // var_dump($value);
-                //var_dump(showMatches("SCHEMA.png"));
-                if(isset($_SESSION["search"]) && $_SESSION["search"]!= ""){
-                    echo "ENTRO<br>";
                 
                 if(isset($_SESSION["fileToSearch"])){
                     print_r(getSearch()); 
                     if(getSearch()!= ""){
-                    //     require_once("./Directories/search.php");
+                        require_once("./Directories/search.php");
                         echo "hola es una prueba";
                         setSearch("");
                     }        
@@ -131,7 +97,7 @@
                             <div class="file-name">
                                 <?php
                                     include("./Directories/search.php");
-                                    showMatches(scandir($path)[$i]);
+                                    showMatches();
                                 ?>
                                 <?php echo scandir($path)[$i]; 
                                       if((date("F d Y H:i:s.",filectime($path."/".scandir($path)[$i]))) === (date("F d Y H:i:s.",filemtime($path."/".scandir($path)[$i])))){
