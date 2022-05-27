@@ -4,7 +4,6 @@
         include("./Directories/search.php");
     }
     $path = checkPath();
-    print_r("nuevo".$path);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -79,10 +78,22 @@
                         ?>
                         <div class="file-box">
                             <div class="file">
-                                <a href="#">
+                                <?php
+                                if(!is_dir(substr($_SESSION["matches"][$j+1],1))){
+                                ?>
+                                <a href="<?php echo substr($_SESSION["matches"][$j+1],1) ?>">
+                                <?php
+                                }
+                                else{
+                                    ?>
+                                    <a href="<?php echo "./Directories/navigate.php?directory=".substr($_SESSION["matches"][$j],0) ?>">
+                                    <?php
+                                }
+                                ?>
+                                <!-- aqui ponemos el enlace para navegar por los directorios -->
                                 <span class="corner"></span>
                                 <div class="icon">
-                                <img src="<?php echo getLogo(pathinfo($_SESSION["matches"][0], PATHINFO_EXTENSION))?>" class="icon-img">
+                                    <img src="<?php echo getLogo(pathinfo($_SESSION["matches"][0], PATHINFO_EXTENSION))?>" class="icon-img">
                                 </div>
                                 <div class="file-name">
                     
@@ -115,7 +126,7 @@
             <?php
                 }
                     }else{
-                        echo "NO EXISTO1";
+                        //echo "NO EXISTO1";
                     }
                 }else{
                     //echo "NO EXISTO";//Aqui hay que mostrar los archivos existentes en la carpeta root $_Session["existingFiles"]     
@@ -127,7 +138,8 @@
                     ?>
                     <div class="file-box">
                     <div class="file">
-                        <a href="#">
+                        <a href="<?php echo "./root/".scandir($path)[$i] ?>">
+                            <!-- //Aqui se ven los archivos por defecto del nivel 1 de root -->
                             <span class="corner"></span>
                             <div class="icon">
                                  <img src="<?php echo getLogo(pathinfo(scandir($path)[$i], PATHINFO_EXTENSION))?>" class="icon-img">
