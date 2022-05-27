@@ -10,10 +10,16 @@
   $newPath = ".".$path."/".$name;
   print_r("PATH COMPLETA ".$newPath);
   if (file_exists($newPath)){
+    if(isset($_SESSION["matches"])){
+      unset($_SESSION["matches"]);
+    }
     header("Location: ../index.php");
     echo "File already exists";
   } else {
     print_r("Creando dir: ".mkdir($newPath, 0777));
+    if(isset($_SESSION["matches"])){
+      unset($_SESSION["matches"]);
+    }
     header("Location: ../index.php");
     echo "Directory succesfully created)";
   }

@@ -22,6 +22,7 @@
 </head>
 
 <body>
+<<<<<<< HEAD
     <div class="container">
         <div class="ro" id="body__container--flex">
             <div class="col-md-3">
@@ -52,6 +53,31 @@
                                 <?php
                             //print_r($path);
                             //$path = "./root/".$path;
+=======
+<div class="container">
+<div class="ro" id="body__container--flex">
+    <div class="col-md-3" >
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="file-manager">
+                    <div class="buttons__container--aside" id="buttons__container--aside">
+                         <form action="./Directories/search.php" method="POST" class="form__input"><!--./Directories/search.php -->
+                            <input name="nameFileOrDirectory" class="input__search" placeholder="root/">
+                            <button type="submit" name="submitSearch" id="buttonPrueba"><i class="fa-solid fa-magnifying-glass color__folder"></i></button>
+                        </form>
+                        <div class="container__icons--folder">
+                            <button type="button" id="button__create--folder" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <i class="fa-solid fa-circle-plus color__folder"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">Upload Files</button>
+                    <div class="hr-line-dashed"></div>
+                    <h5><?php print_r($path); ?> <a href="<?php echo "./Directories/backFolder.php?directory=".$path?>"><i class="fa-solid fa-circle-left color__folder"></i></a></h5>
+                    <ul class="folder-list" style="padding: 0">
+                        <?php
+>>>>>>> buttons
                             $countDirectories = count(scandir($path));
                             $pathDir = "../root/"; 
                             for($i = 2; $i < $countDirectories; $i++){
@@ -82,53 +108,80 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-9 animated fadeInRight">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div id="prueba">
-                            <?php
-                function prueba($var){
-                include("./Directories/search.php");
-                // $value = getSearch();
-                // var_dump($value);
-                echo show();
-                //var_dump(showMatches("SCHEMA.png"));
-                //if(isset($_SESSION["fileToSearch"])){
-                    echo "ENTRO<br>";
-                    print_r(getSearch()); 
-                    if(getSearch()!= ""){
-                        require_once("./Directories/search.php");
-                        echo "hola es una prueba";
-                        //setSearch("");
-                    }        
-                //}else{
-                    echo "no entro<br>";
-                    print_r("GET SERACH".getSearch()); 
-                    var_dump($_SESSION["fileToSearch"]);
-                //}
-                }
-                ?>
-                        </div>
-                        <div id="prueba1">
-                            <?php      
-                    $countDirectories = count(scandir($path));
-                    $pathDir = "../root/"; 
-                    print_r("<br><br>".$path);
-                        for($i = 2; $i < $countDirectories; $i++){
-                            if(!is_dir($path."/".scandir($path)[$i])){
-                ?>
-                        </div>
+        </div>
+    </div>
+    <div class="col-md-9 animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                    <?php
+                    if(isset($_SESSION["matches"])){
+                        if(count($_SESSION["matches"])!=0){
+                        //echo "EXISTO";
+                        
+                        //echo "ELEMENTOS".count($_SESSION["matches"]);
+                        for($j=0; $j < count($_SESSION["matches"]); $j+=5){
+                        ?>
                         <div class="file-box">
                             <div class="file">
                                 <a href="#">
-                                    <span class="corner"></span>
+                                <span class="corner"></span>
 
-                                    <div class="icon">
-                                        <i class="fa fa-file"></i>
-                                    </div>
-                                    <div class="file-name">
+                                <div class="icon">
+                                <i class="fa fa-file"></i>
+                                </div>
+                                <div class="file-name">
+                    
+                        <?php //echo scandir($path)[$i];
+                            echo substr($_SESSION["matches"][$j], 0, 10)."<br>";
+                            //var_dump(explode("/",$_SESSION["matches"][$j+1])); 
+                            if($_SESSION["matches"][$j+2] === $_SESSION["matches"][$j+3]){
+                                echo "<br>Creation: ".$_SESSION["matches"][$j+2];
+                            }else{
+                                echo "<br>Modified: ".$_SESSION["matches"][$j+3];
+                            }
+                            $size = $_SESSION["matches"][$j+4];
+                            $bytes = number_format($size / 1024, 2);
+                            if ($size >= 1048576)
+                            {
+                                $bytes = number_format($size / 1048576, 2) . ' MB';
+                                echo "<br>".$bytes."MB";
+                            }
+                            else if ($size >= 1024)
+                            {
+                                echo "<br>".$bytes."KB";
+                            }                                    
+                        ?>
+                    <br>
+                    <a href="<?php echo "./Directories/delete.php?path=".$_SESSION["matches"][$j+1];?>"><i id="<?php echo $_SESSION["matches"][$j+1]."1" ?>" class="fa-solid fa-trash-can color__folder" data="trash"></i></a>
+                    </a>
+                </div>
+            </div>
+        </div>
+            <?php
+                }
+                    }else{
+                        echo "NO EXISTO1";
+                    }
+                }else{
+                    //echo "NO EXISTO";//Aqui hay que mostrar los archivos existentes en la carpeta root $_Session["existingFiles"]     
+                    $countDirectories = count(scandir($path));
+                    $pathDir = "../root/"; 
+                    //print_r("<br><br>".$path);
+                        for($i = 2; $i < $countDirectories; $i++){
+                            if(!is_dir($path."/".scandir($path)[$i])){
+                    ?>
+                    <div class="file-box">
+                    <div class="file">
+                        <a href="#">
+                            <span class="corner"></span>
 
-                                        <?php echo scandir($path)[$i]; 
+                            <div class="icon">
+                                <i class="fa fa-file"></i>
+                            </div>
+                            <div class="file-name">
+                                
+                                <?php 
+                                      echo substr(scandir($path)[$i], 0, 10); 
                                       if((date("F d Y H:i:s.",filectime($path."/".scandir($path)[$i]))) === (date("F d Y H:i:s.",filemtime($path."/".scandir($path)[$i])))){
                                         echo "<br>Creation: ".date("F d Y H:i:s.",filectime($path."/".scandir($path)[$i]));
                                       }else{
@@ -138,7 +191,7 @@
                                       $bytes = number_format($size / 1024, 2);
                                       if ($size >= 1048576)
                                         {
-                                            $bytes = number_format($size / 1048576, 2) . ' MB';
+                                            $bytes = number_format($size / 1048576, 2);
                                             echo "<br>".$bytes."MB";
                                         }
                                         else if ($size >= 1024)
@@ -146,22 +199,46 @@
                                             echo "<br>".$bytes."KB";
                                         }                                    
                                 ?>
-                                        <br>
-                                        <a
-                                            href="<?php echo "./Directories/delete.php?path=".$pathDir.scandir($path)[$i];?>"><i
-                                                id="<?php echo scandir($path)[$i]."1" ?>"
-                                                class="fa-solid fa-trash-can color__folder" data="trash"></i></a>
-                                        <small>Added: Jan 11, 2014</small>
-                                    </div>
-                                </a>
+                                <br>
+                                <a href="<?php echo "./Directories/delete.php?path=".$pathDir.scandir($path)[$i];?>"><i id="<?php echo scandir($path)[$i]."1" ?>" class="fa-solid fa-trash-can color__folder" data="trash"></i></a>
+                                
                             </div>
 
                         </div>
                         <?php
                         }
                     }
+                }
                 ?>
-                        <!-- <div class="file-box">
+                <?php
+                // echo show();   
+                // function prueba($var){
+                //     echo"HOLLAAAAAAAAA";
+                //     include("./Directories/search.php");
+                //     echo dirtree("../root/", $regex='', $ignoreEmpty=false, $var);
+                //     echo show();
+                // }
+                // // $value = getSearch();
+                // // var_dump($value);
+                // //var_dump(showMatches("SCHEMA.png"));
+                // if(isset($_SESSION["search"]) && $_SESSION["search"]!= ""){
+                //     echo "ENTRO<br>";
+                //     print_r(getSearch()); 
+                //     if(getSearch()!= ""){
+                //     //     require_once("./Directories/search.php");
+                //         echo "hola es una prueba";
+                //         //setSearch("");
+                //     }        
+                // }else{
+                //     // echo "no entro<br>";
+                //     // print_r("GET SERACH".getSearch()); 
+                //     // var_dump($_SESSION["search"]);
+                // }
+                
+                ?>
+                </div>
+                
+                <!-- <div class="file-box">
                     <div class="file">
                         <a href="#">
                             <span class="corner"></span>

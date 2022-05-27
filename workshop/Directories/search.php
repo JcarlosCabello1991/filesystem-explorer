@@ -10,56 +10,73 @@ $files = glob($fileToSearch);
 //First obtain all the repositories and files for each level from root folder
 print_r("FILETOSEARCH".$fileToSearch);
 // dirtree("../root/");
-echo "<br>";
-//showMatches($fileToSearch);
-//searchFiles($path);
-function show(){
-    return "HOLA MUNDOOOOO";
-}
-function dirtree($dir, $regex='', $ignoreEmpty=false, $fileToSearch)
-{
-    if (!$dir instanceof DirectoryIterator) {
-        $dir = new DirectoryIterator((string)$dir);
-    }
-    $dirs  = array();
-    $files = array();
-    $array = array();
-    foreach ($dir as $node) {
-        if ($node->isDir() && !$node->isDot()) {
-            $tree = dirtree($node->getPathname(), $regex, $ignoreEmpty, $fileToSearch);
-            if (!$ignoreEmpty || count($tree)) {
-                array_push($dirs, $node->getFilename());
-                echo "ARRAY<br>";
-                var_dump($dirs);
-                echo "<br>";
-                if($fileToSearch == $node->getFilename()){
-                    echo "AAAAAAA<li>".$fileToSearch."</li>";
-                    array_push($array, "AAAAAAA<li>".$fileToSearch."</li>");
-                }
-            }
-        } elseif ($node->isFile()) {
-            $name = $node->getFilename();
-            if ('' == $regex || preg_match($regex, $name)) {
-                array_push($files, $name);
-                var_dump($dirs);
-                if($fileToSearch == $name){
-                    echo "AAAAAAA<li>".$fileToSearch."</li>";
-                    array_push($array, "AAAAAAA<li>".$fileToSearch."</li>");
-                }
-            }
-        }
-    }
-    asort($dirs);
-    sort($files);
-    echo "<br>";
-    // array_push($array, $dirs);
-    // array_push($array, $files);
-    // var_dump(array_merge($dirs, $files));
-    // $tree1 = array_merge($dirs, $files);
-    // foreach ($array as $node) {
-    //     var_dump($node);
-    // }
-    return $array;
+echo "<br>";echo "5";
+// function dirtree($dir, $regex='', $ignoreEmpty=false, $fileToSearch, $_SESS)
+// {
+//     //session_start();
+//     if (!$dir instanceof DirectoryIterator) {
+//         $dir = new DirectoryIterator((string)$dir);
+//     }
+//     $dirs  = array();
+//     $files = array();
+//     $array = array();
+//     // $_SESSION["matches"] = array();
+//     foreach ($dir as $node) {
+//         echo "<br>NODE: <br>";var_dump($node);echo "<br>";
+//         if ($node->isDir() && !$node->isDot()) {
+//             $tree = dirtree($node->getPathname(), $regex, $ignoreEmpty, $fileToSearch,$_SESSION["matches"]);
+//             echo "tree";var_dump($tree);
+//             echo "IGNORE<br>";
+//             var_dump($ignoreEmpty);echo "<br";
+//             if (!$ignoreEmpty || count($tree)) {
+//                 //array_push($dirs, $node->getFilename());
+//                 echo "ARRAY<br>";
+//                 var_dump($_SESSION["matches"]);echo "5";
+//                 echo "<br>";
+//                 if($fileToSearch == $node->getFilename()){
+//                     echo "AAAAAAA1<li>".$fileToSearch."</li>";
+//                     //array_push($array, $fileToSearch);
+//                     echo $node->getPathname();
+//                     array_push($_SESSION["matches"], $fileToSearch);
+//                     array_push($_SESSION["matches"], $node->getRealPath());
+//                     echo "<br>";
+//                     var_dump($_SESSION["matches"]);echo "7";
+//                     echo "<br>";
+//                     //return $_SESS;
+//                 }
+//             }
+//         } elseif ($node->isFile()) {
+//             $name = $node->getFilename();
+//             if ('' == $regex || preg_match($regex, $name)) {
+//                 array_push($files, $name);
+//                 var_dump($_SESSION["matches"]);echo "6";
+//                 if($fileToSearch == $name){
+//                     echo "AAAAAAA<li>".$fileToSearch."</li>";
+//                     //array_push($array, $fileToSearch);//metemos la coincidencia en el array
+//                     echo "RUTA: ".$node->getPathname()."<br>";
+//                     echo "RUTA: ".$node->getRealPath()."<br>";
+//                     array_push($_SESSION["matches"], $fileToSearch);
+//                     array_push($_SESSION["matches"], $node->getRealPath());
+//                     var_dump($_SESSION["matches"]);
+//                     //return $_SESS;$ignoreEmpty = true;
+//                 }
+//             }
+//         }
+//     }
+//     asort($dirs);
+//     sort($files);
+//     echo"1<br>";
+//     var_dump($_SESSION["matches"]);
+//     echo "<br>2<br>";
+//     return $_SESSION["matches"];
+//     //header("Location: ../index.php");
+// }
+
+function getMatches($fileto){
+    $_SESSION["matches"] = array();
+    $var = dirtree1("../root/", $_SESSION["matches"], $fileto);
+    print_r($var);
+    header("Location: ../index.php");
 }
 
 function showMatches($fileToSearch){
@@ -80,28 +97,84 @@ function showMatches($fileToSearch){
     //header("Location: ../index.php");
 }
 
-// function showMatches($fileToSearch){
-//     dirtree("../root/");
-//     $files = glob($fileToSearch);
-//     var_dump(glob($fileToSearch)); echo "<br>";
 
-//     foreach ($files as $file) {
 
-//         echo $file."<br>";
+    function dirtree1($ruta, $_SESS, $fileto){
+        // abrir un directorio y listarlo recursivo
+        if (is_dir($ruta)) {
+           if ($dh = opendir($ruta)) {
+              while (($file = readdir($dh)) !== false) {
+                print_r($_SESSION["matches"]);
+                 //esta línea la utilizaríamos si queremos listar todo lo que hay en el directorio
+                 //mostraría tanto archivos como directorios
+                 //echo "<br>Nombre de archivo: $file : Es un: " . filetype($ruta . $file);
+                 if (is_dir($ruta . $file) && $file!="." && $file!=".."){
+                    //solo si el archivo es un directorio, distinto que "." y ".."
+                    echo "<br>Directorio: $ruta$file";
+                    echo"<br>size ";var_dump(filesize($ruta . $file));
+                    if($fileto == $file){
+                        array_push($_SESSION["matches"], $file);
+                        array_push($_SESSION["matches"], $ruta.$file);
+                        array_push($_SESSION["matches"],date("F d Y H:i:s.",filectime($ruta . $file)));
+                        array_push($_SESSION["matches"],date("F d Y H:i:s.",filemtime($ruta . $file)));
+                        array_push($_SESSION["matches"],folderSize($ruta . $file . "/"));
+                    }
+                    dirtree1($ruta . $file . "/", $_SESS, $fileto);
+                 }elseif(is_file($ruta . $file) && $file!="." && $file!=".."){
+                     echo"<br>Fichero: $ruta$file";
+                     var_dump(filesize($ruta . $file));
+                     var_dump(date("F d Y H:i:s.",filemtime($ruta . $file)));
+                     if($fileto == $file){
+                        array_push($_SESSION["matches"], $file);
+                        array_push($_SESSION["matches"], $ruta.$file);
+                        array_push($_SESSION["matches"],date("F d Y H:i:s.",filectime($ruta . $file)));
+                        array_push($_SESSION["matches"],date("F d Y H:i:s.",filemtime($ruta . $file)));
+                        array_push($_SESSION["matches"],filesize($ruta . $file));
+                    }
+                     dirtree1($ruta . $file, $_SESSION["matches"], $fileto);
+                 }
+              }
+              return $_SESSION["matches"];
+              //header("Location: ../index.php");
+           closedir($dh);
+           }
+        }
+        echo "<br>2";
+        print_r($_SESSION["matches"]);echo"<br>1<br>";
+    }
 
-//     }
-
-// }
-
-// function searchFiles($path){
-//     $arrayMatches = [];
-//     $dir = new RecursiveDirectoryIterator(realpath($path), RecursiveDirectoryIterator::SKIP_DOTS);
-//     $it = new RecursiveIteratorIterator($dir);
-
-//     foreach($it as $file){
-//         array_push($arrayMatches, $file->getRealPath());
-//     }
-//     var_dump($arrayMatches);
-//     //return $arrayMatches;
-// }
+    function folderSize($ruta, $size=0){
+        if (is_dir($ruta)) {
+            if ($dh = opendir($ruta)) {
+               while (($file = readdir($dh)) !== false) {
+                 print_r($_SESSION["matches"]);
+                  //esta línea la utilizaríamos si queremos listar todo lo que hay en el directorio
+                  //mostraría tanto archivos como directorios
+                  //echo "<br>Nombre de archivo: $file : Es un: " . filetype($ruta . $file);
+                  if (is_dir($ruta . $file) && $file!="." && $file!=".."){
+                     //solo si el archivo es un directorio, distinto que "." y ".."
+                     echo "<br>Directorio: $ruta$file";
+                     echo"<br>size ";var_dump(filesize($ruta . $file));
+                     //if($fileto == $file){
+                         $size = filesize($ruta . $file)+$size;echo"SIZe";var_dump($size);
+                     //}
+                     folderSize($ruta . $file . "/", $size);
+                  }elseif(is_file($ruta . $file) && $file!="." && $file!=".."){
+                      echo"<br>Fichero: $ruta$file";
+                      var_dump(filesize($ruta . $file));
+                      var_dump(date("F d Y H:i:s.",filemtime($ruta . $file)));
+                      //if($fileto == $file){
+                        $size = filesize($ruta . $file)+$size;echo"SIZe";var_dump($size);
+                     //}
+                      folderSize($ruta . $file . "/", $size);
+                  }
+               }
+               echo"valor CALCULADO: $size";
+               return $size;
+               //header("Location: ../index.php");
+            closedir($dh);
+            }
+         }
+    }
 ?>
+

@@ -7,6 +7,9 @@
     if(is_dir($path)){
         print_r($path);
         rmdir($path);
+        if(isset($_SESSION["matches"])){
+            unset($_SESSION["matches"]);
+        }
         header("Location: ../index.php");
     }else{
         echo "No such directory";
