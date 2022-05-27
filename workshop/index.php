@@ -34,7 +34,7 @@
                             <div class="buttons__container--aside" id="buttons__container--aside">
                                 <form action="./Directories/search.php" method="POST" class="form__input">
                                     <!--./Directories/search.php -->
-                                    <input name="nameFileOrDirectory" class="input__search" placeholder="root/">
+                                    <input name="nameFileOrDirectory" class="input__search" placeholder="Search">
                                     <button type="submit" name="submitSearch" id="buttonPrueba"><i
                                             class="fa-solid fa-magnifying-glass color__folder"></i></button>
                                 </form>
@@ -49,7 +49,7 @@
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal2">Upload Files</button>
                             <div class="hr-line-dashed"></div>
-                            <h5><?php print_r($path); ?> <a
+                            <h5><?php print_r(substr($path,2)); ?> <a
                                     href="<?php echo "./Directories/backFolder.php?directory=".$path?>"><i
                                         class="fa-solid fa-circle-left color__folder"></i></a></h5>
                             <ul class="folder-list" style="padding: 0">
@@ -58,11 +58,14 @@
                             $pathDir = "../root/"; 
                             for($i = 2; $i < $countDirectories; $i++){
                                 if(is_dir($path."/".scandir($path)[$i])){
-                                    echo "<br>";print_r($path."/".scandir($path)[$i]);
+                                    //echo "<br>";print_r($path."/".scandir($path)[$i]);
                         ?>
                                 <li><a
-                                        href=" <?php echo "./Directories/navigate.php?directory=".scandir($path)[$i] ?>"><?php echo scandir($path)[$i]; ?></a><a
-                                        href="<?php echo "./Directories/delete.php?path=".$pathDir.scandir($path)[$i];?>"><i
+                                        href=" <?php echo "./Directories/navigate.php?directory=".scandir($path)[$i] ?>"><?php echo scandir($path)[$i]; ?></a>
+                                        <?php 
+                                        if(scandir($path)[$i]!= "trash"){
+                                        ?>
+                                        <a href="<?php echo "./Directories/delete.php?path=".$pathDir.scandir($path)[$i];?>"><i
                                             id="<?php echo scandir($path)[$i] ?>"
                                             class="fa-solid fa-trash-can color__folder" data="trash"></i></a>
                                     <button type="button" id="button__delete--folder" class="btn btn-primary"
@@ -71,6 +74,9 @@
                                             class="fa-solid fa-pen color__folder"
                                             data-value="<?php echo "./Directories/delete.php?path=".$pathDir.scandir($path)[$i] ?>"></i>
                                     </button>
+                                    <?php
+                                        }
+                                    ?>
                                 </li>
                                 <?php
                                 }
