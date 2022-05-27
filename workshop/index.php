@@ -22,38 +22,6 @@
 </head>
 
 <body>
-<<<<<<< HEAD
-    <div class="container">
-        <div class="ro" id="body__container--flex">
-            <div class="col-md-3">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-content">
-                        <div class="file-manager">
-                            <div class="buttons__container--aside" id="buttons__container--aside">
-                                <form action="./Directories/search.php" method="POST" class="form__input">
-                                    <input name="nameFileOrDirectory" class="input__search" placeholder="root/">
-                                    <button type="submit" name="submitSearch" id="buttonPrueba"><i
-                                            class="fa-solid fa-magnifying-glass color__folder"></i></button>
-                                </form>
-                                <div class="container__icons--folder">
-                                    <button type="button" id="button__create--folder" class="btn btn-primary"
-                                        data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <i class="fa-solid fa-circle-plus color__folder"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="hr-line-dashed"></div>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal2">Upload Files</button>
-                            <div class="hr-line-dashed"></div>
-                            <h5><?php print_r($path); ?> <a
-                                    href="<?php echo "./Directories/backFolder.php?directory=".$path?>"><i
-                                        class="fa-solid fa-circle-left color__folder"></i></a></h5>
-                            <ul class="folder-list" style="padding: 0">
-                                <?php
-                            //print_r($path);
-                            //$path = "./root/".$path;
-=======
 <div class="container">
 <div class="ro" id="body__container--flex">
     <div class="col-md-3" >
@@ -77,7 +45,6 @@
                     <h5><?php print_r($path); ?> <a href="<?php echo "./Directories/backFolder.php?directory=".$path?>"><i class="fa-solid fa-circle-left color__folder"></i></a></h5>
                     <ul class="folder-list" style="padding: 0">
                         <?php
->>>>>>> buttons
                             $countDirectories = count(scandir($path));
                             $pathDir = "../root/"; 
                             for($i = 2; $i < $countDirectories; $i++){
