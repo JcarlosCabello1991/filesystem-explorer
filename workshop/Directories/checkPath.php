@@ -108,8 +108,6 @@ function checkSearch(){
 }
 
 function getLogo($type){
-    // $ext = explode(".", $type)[count(explode(".", $type)-1)];
-    // $result = $ext[1];
     switch($type){
         case "doc":
             return "./logos/doc.png";
