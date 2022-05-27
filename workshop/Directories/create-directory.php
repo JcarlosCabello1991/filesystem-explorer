@@ -1,5 +1,4 @@
 <?php
-  print_r("hola");
   include("./checkPath.php");
   $path = checkPath();
 
