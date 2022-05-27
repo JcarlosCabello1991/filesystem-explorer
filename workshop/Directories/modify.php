@@ -8,5 +8,8 @@ include("./checkPath.php");
     $newPath = ".".checkPath()."/".$path;
     $newPath = $newPath;
     rename(".".checkPath()."/".explode("/",$oldPath)[count(explode("/",$oldPath))-1],$newPath);
+    if(isset($_SESSION["matches"])){
+        unset($_SESSION["matches"]);
+    }
     header("Location: ../index.php");
 ?>
