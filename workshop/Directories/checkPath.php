@@ -1,6 +1,5 @@
 <?php
 function checkPath(){
-    print_r("entro");
     session_start();
     if(isset($_SESSION["currentDirectory"])){
         $_SESSION["search"] = getSearch();
