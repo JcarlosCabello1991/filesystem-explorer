@@ -107,4 +107,52 @@ function checkSearch(){
         return $_SESSION["search"];
     }
 }
+
+function getLogo($type){
+    // $ext = explode(".", $type)[count(explode(".", $type)-1)];
+    // $result = $ext[1];
+    switch($type){
+        case "doc":
+            return "./logos/doc.png";
+        case "excell":
+            return "./logos/excell.jpg";
+        case "exe":
+            return "./logos/exe.png";          
+        case "jpg":
+            return "./logos/jpg.png";
+            
+        case "mp3":
+            return "./logos/mp3.png";
+
+        case "mp4":
+            return "./logos/mp4.jpg";
+
+        case "odt":
+            return "./logos/odt.png";
+
+        case "pdf":
+            return "./logos/pdf.png";
+            
+        case "png":
+            return "./logos/png.png";
+
+        case "ppt":
+            return "./logos/ppt.png";
+
+        case "rar":
+            return "./logos/rar.png";
+
+        case "svg":
+            return "./logos/svg.png";
+
+        case "txt":
+            return "./logos/txt.png";
+
+        case "zip":        
+            return "./logos/zip.png";
+
+        default:
+            return "./logos/folder.png";
+    }
+}
 ?>
