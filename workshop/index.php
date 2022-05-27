@@ -92,9 +92,8 @@
                             <div class="file">
                                 <a href="#">
                                 <span class="corner"></span>
-
                                 <div class="icon">
-                                <i class="fa fa-file"></i>
+                                <img src="<?php echo getLogo(pathinfo($_SESSION["matches"][0], PATHINFO_EXTENSION))?>" class="icon-img">
                                 </div>
                                 <div class="file-name">
                     
@@ -141,9 +140,8 @@
                     <div class="file">
                         <a href="#">
                             <span class="corner"></span>
-
                             <div class="icon">
-                                <i class="fa fa-file"></i>
+                                 <img src="<?php echo getLogo(pathinfo(scandir($path)[$i], PATHINFO_EXTENSION))?>" class="icon-img">
                             </div>
                             <div class="file-name">
                                 
