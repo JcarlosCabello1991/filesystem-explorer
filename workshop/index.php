@@ -56,7 +56,7 @@
                             $pathDir = "../root/"; 
                             for($i = 2; $i < $countDirectories; $i++){
                                 if(is_dir($path."/".scandir($path)[$i])){
-                                    //echo "<br>";print_r($path."/".scandir($path)[$i]);
+                                   
                         ?>
                                 <li><a
                                         href=" <?php echo "./Directories/navigate.php?directory=".scandir($path)[$i] ?>"><?php echo scandir($path)[$i]; ?></a>
