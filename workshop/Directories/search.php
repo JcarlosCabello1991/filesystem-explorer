@@ -1,8 +1,7 @@
 <?php
-include("./index.php");
+include("./checkPath.php");
 $path = "../root/";
 $fileToSearch = $_POST["nameFileOrDirectory"];
-prueba($fileToSearch);
 setSearch($fileToSearch);
 $files = glob($fileToSearch);
 return getMatches($fileToSearch);
