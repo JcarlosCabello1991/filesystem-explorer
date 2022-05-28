@@ -7,21 +7,44 @@ body{
     background-size: 100%;
     background-repeat: no-repeat;
     background-size: cover;
+    margin: 0rem !important;
 }
 
 .container{
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    width: 100vw;
 }
 
 #body__container--flex{
     display: grid !important;
-    grid-template-columns: 1fr 4fr !important;
+    grid-template-columns: 1fr 1fr 4fr !important;
     flex-direction: row;
     justify-content: center;
     flex-wrap: nowrap;
-    gap: 2rem;
+    gap: 1rem;
     margin-top: 5rem;
+}
+
+.div__section--lateralCharts{
+  background-color: #eee;
+  width: 20rem;
+}
+
+.section__small--typeDoc{
+  margin: 1rem;
+  color: black;
+}
+
+.section__charts-style{
+  margin-left: 1rem;
+  margin-right: 1rem;
+  color: black;
+}
+
+#mp4{
+  margin-bottom: 0.5rem;
 }
 
 #button__create--folder, #button__delete--folder{
