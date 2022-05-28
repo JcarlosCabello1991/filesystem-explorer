@@ -5,12 +5,7 @@ $fileToSearch = $_POST["nameFileOrDirectory"];
 prueba($fileToSearch);
 setSearch($fileToSearch);
 $files = glob($fileToSearch);
-<<<<<<< HEAD
-//print_r($files);
-
-=======
 return getMatches($fileToSearch);
->>>>>>> buttons
 //First obtain all the repositories and files for each level from root folder
 
 function getMatches($fileto){
@@ -19,31 +14,7 @@ function getMatches($fileto){
     header("Location: ../index.php");
 }
 
-<<<<<<< HEAD
-function showMatches($fileToSearch){
-    $arrayDir = dirtree("../root/", $regex='', $ignoreEmpty=false, $fileToSearch);
-    print_r("HOLO");
-    var_dump($arrayDir);
-    print_r($fileToSearch);
-    for($i = 0; $i < count($arrayDir); $i++){
-        print_r("IMPRIMIENDO".$fileToSearch);
-        var_dump($arrayDir[$i]);
-        echo "<br>";
-        if($fileToSearch == $arrayDir[$i]){
-            echo "AAAAAAA<li>".$fileToSearch."</li>";
-        }
-    }
-    //return "<p>PRUEBA HOLA</p>";
-    return $arrayDir;
-    //header("Location: ../index.php");
-}
-
-
-
-    function dirtree1($ruta, $_SESS, $fileto){
-=======
 function dirtree1($ruta, $_SESS, $fileto){
->>>>>>> buttons
         // abrir un directorio y listarlo recursivo
         if (is_dir($ruta)) {
            if ($dh = opendir($ruta)) {
