@@ -25,6 +25,37 @@
 <body>
     <div class="container">
         <div class="ro" id="body__container--flex">
+            <section class="div__section--lateralCharts" id="section">
+                <small class="section__small--typeDoc">DOC</small>
+                <div class="section__charts-style" id="doc"><?php echo number_format(chartsSize("./root/", "doc"),2) . "%"; unset($_SESSION["size"]);?></div>
+                <small class="section__small--typeDoc">CSV</small>
+                <div class="section__charts-style" id="csv"><?php echo number_format(chartsSize("./root/", "csv"),2) . "%"; unset($_SESSION["size"]);?></div>
+                <small class="section__small--typeDoc">JPG</small>
+                <div class="section__charts-style" id="jpg"><?php echo number_format(chartsSize("./root/", "jpg"),2) . "%"; unset($_SESSION["size"]);?></div>
+                <small class="section__small--typeDoc">PNG</small>
+                <div class="section__charts-style" id="png"><?php echo number_format(chartsSize("./root/", "png"),2) . "%"; unset($_SESSION["size"]);?></div>
+                <small class="section__small--typeDoc">TXT</small>
+                <div class="section__charts-style" id="txt"><?php echo number_format(chartsSize("./root/", "txt"),2) . "%"; unset($_SESSION["size"]);?></div>
+                <small class="section__small--typeDoc">PPT</small>
+                <div class="section__charts-style" id="ppt"><?php echo number_format(chartsSize("./root/", "ppt"),2) . "%"; unset($_SESSION["size"]);?></div>
+                <small class="section__small--typeDoc">ODT</small>
+                <div class="section__charts-style" id="odt"><?php echo number_format(chartsSize("./root/", "odt"),2) . "%"; unset($_SESSION["size"]);?></div>
+                <small class="section__small--typeDoc">PDF</small>
+                <div class="section__charts-style" id="pdf"><?php echo number_format(chartsSize("./root/", "pdf"),2) . "%"; unset($_SESSION["size"]);?></div>
+                <small class="section__small--typeDoc">ZIP</small>
+                <div class="section__charts-style" id="zip"><?php echo number_format(chartsSize("./root/", "zip"),2) . "%"; unset($_SESSION["size"]);?></div>
+                <small class="section__small--typeDoc">RAR</small>
+                <div class="section__charts-style" id="rar"><?php echo number_format(chartsSize("./root/", "rar"),2) . "%"; unset($_SESSION["size"]);?></div>
+                <small class="section__small--typeDoc">EXE</small>
+                <div class="section__charts-style" id="exe"><?php echo number_format(chartsSize("./root/", "exe"),2) . "%"; unset($_SESSION["size"]);?></div>
+                <small class="section__small--typeDoc">SVG</small>
+                <div class="section__charts-style" id="svg"><?php echo number_format(chartsSize("./root/", "svg"),2) . "%"; unset($_SESSION["size"]);?></div>
+                <small class="section__small--typeDoc">MP3</small>
+                <div class="section__charts-style" id="mp3"><?php echo number_format(chartsSize("./root/", "mp3"),2) . "%"; unset($_SESSION["size"]);?></div>
+                <small class="section__small--typeDoc">MP4</small>
+                <div class="section__charts-style" id="mp4"><?php echo number_format(chartsSize("./root/", "mp4"),2) . "%"; unset($_SESSION["size"]);?></div>
+                <?php unset($_SESSION["size"]);?>
+            </section>
             <div class="col-md-3">
                 <div class="ibox float-e-margins">
                     <div class="ibox-content">
@@ -112,13 +143,13 @@
                                         <!-- aqui ponemos el enlace para navegar por los directorios -->
                                         <span class="corner"></span>
                                         <div class="icon">
-                                            <img src="<?php echo getLogo(pathinfo($_SESSION["matches"][0], PATHINFO_EXTENSION))?>"
+                                            <img src="<?php echo getLogo(pathinfo($_SESSION["matches"][$j], PATHINFO_EXTENSION))?>"
                                                 class="icon-img">
                                         </div>
                                         <div class="file-name">
 
                                             <?php 
-                            echo substr($_SESSION["matches"][$j], 0, 10)."<br>";
+                            echo substr($_SESSION["matches"][$j], 0, 15)."<br>";
                             if($_SESSION["matches"][$j+2] === $_SESSION["matches"][$j+3]){
                                 echo "<br>Creation: ".$_SESSION["matches"][$j+2];
                             }else{
@@ -168,7 +199,7 @@
                                 <div class="file-name">
 
                                     <?php 
-                                      echo substr(scandir($path)[$i], 0, 10); 
+                                      echo substr(scandir($path)[$i], 0, 15); 
                                       if((date("F d Y H:i:s.",filectime($path."/".scandir($path)[$i]))) === (date("F d Y H:i:s.",filemtime($path."/".scandir($path)[$i])))){
                                         echo "<br>Creation: ".date("F d Y H:i:s.",filectime($path."/".scandir($path)[$i]));
                                       }else{

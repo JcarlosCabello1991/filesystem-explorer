@@ -152,4 +152,47 @@ function getLogo($type){
             return "./logos/folder.png";
     }
 }
+
+function chartsSize($ruta, $ext, $size=0){
+    // abrir un directorio y listarlo recursivo
+    if (is_dir($ruta)) {
+       if ($dh = opendir($ruta)) {
+          while (($file = readdir($dh)) !== false) {
+            //print_r($_SESSION["matches"]);
+             //esta línea la utilizaríamos si queremos listar todo lo que hay en el directorio
+             //mostraría tanto archivos como directorios
+             if (is_dir($ruta . $file) && $file!="." && $file!=".."){
+                //solo si el archivo es un directorio, distinto que "." y ".."
+                if(isset($_SESSION["size"])){
+                    $_SESSION["size"] = filesize($ruta . $file)+$_SESSION["size"];
+                }else{
+                    $_SESSION["size"] = filesize($ruta . $file);
+                }
+                chartsSize($ruta . $file . "/", $ext, $_SESSION["size"]);
+             }elseif(is_file($ruta . $file) && $file!="." && $file!=".."){
+                 if($ext == pathinfo($ruta .$file, PATHINFO_EXTENSION)){
+                    if(isset($_SESSION["size"])){
+                        $_SESSION["size"] = filesize($ruta . $file)+$_SESSION["size"];
+                    }else{
+                        $_SESSION["size"] = filesize($ruta . $file);
+                    }
+                }
+                chartsSize($ruta . $file . "/", $ext, $size);
+             }
+        }
+          $bytes = $_SESSION["size"];
+          if ($bytes >= 1048576)
+          {
+            $bytes = ($_SESSION["size"] / 1024);
+          }
+          else if ($bytes >= 1024)
+          {
+            $bytes = ($_SESSION["size"] / 1024);
+            $bytes = $bytes;
+          }      
+          return (($bytes/100000)*100);
+       closedir($dh);
+       }
+    }
+}
 ?>
