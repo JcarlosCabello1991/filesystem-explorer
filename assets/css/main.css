@@ -17,6 +17,15 @@ body{
     width: 100vw;
 }
 
+hr{
+  margin: 0.1rem 0%;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+}
+
 #body__container--flex{
     display: grid !important;
     grid-template-columns: 1fr 1fr 4fr !important;
@@ -28,8 +37,10 @@ body{
 }
 
 .div__section--lateralCharts{
-  background-color: #eee;
+  background-color: #ffffff;
   width: 20rem;
+  border-radius: 25px;
+  border: 1px solid black;
 }
 
 .section__small--typeDoc{
@@ -217,22 +228,29 @@ li .color__folder{
   padding: 10px;
   background-color: #f8f8f8;
   border-top: 1px solid #e7eaec;
+  border-radius: 25px;
 }
 .file-name small {
   color: #676a6c;
 }
+
+.file{
+  border-radius: 25px;
+}
+
 ul.tag-list li {
   list-style: none;
 }
 .corner {
   position: absolute;
-  display: inline-block;
+  display: none;
   width: 0;
   height: 0;
   line-height: 0;
-  border: 0.6em solid transparent;
+  border: transparent;
   border-right: 0.6em solid #f1f1f1;
   border-bottom: 0.6em solid #f1f1f1;
+  border-radius: 25px;
   right: 0em;
   bottom: 0em;
 }
@@ -251,6 +269,12 @@ a.compose-mail {
 }
 .ibox.collapsed .ibox-content {
   display: none;
+}
+
+.ibox-content{
+  display: flex;
+  border-radius: 25px;
+  border: 1px solid black;
 }
 .ibox.collapsed .fa.fa-chevron-up:before {
   content: "\f078";
