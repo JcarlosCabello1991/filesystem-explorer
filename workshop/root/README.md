@@ -55,7 +55,7 @@ We use Miró Application and UML Diagrams to organize and develop the code behav
 
 ## Images
 
-<img src ="./screenshootFyleSystem.png">
+<img src ="./sreenshootFyleSystem.png">
 
 ## Resources
 
