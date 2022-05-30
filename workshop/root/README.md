@@ -43,6 +43,8 @@ We use Miró Application and UML Diagrams to organize and develop the code behav
 
 ## Technologies used
 
+\* MIRO
+
 \* HTML
 
 \* CSS
@@ -51,7 +53,7 @@ We use Miró Application and UML Diagrams to organize and develop the code behav
 
 \* PHP
 
-\* BOOTSTRAP
+\* BOOTSTRAP 
 
 ## Images
 
