@@ -10,15 +10,6 @@
 
 >The file explorer is a tool that allows you to directly view and manipulate the files and directories associated with a path, so you must take into account from which path the user starts and which path they can access.
 
-
-## Index <!-- omit in toc -->
-
-- [Requirements](#requirements)
-- [Repository](#repository)
-- [Technologies used](#technologies-used)
-- [Project delivery](#project-delivery)
-- [Resources](#resources)
-
 ## Requirements
 
 - You cannot use file third-party libraries
@@ -34,13 +25,21 @@
 - You should try as much as possible that the commits and the planned tasks are the same
 Delete files that are not used or are not necessary to evaluate the project
 
-## Repository
+## Organization
 
-First of all you must fork this project into your GitHub account.
+We use Miró Application and UML Diagrams to organize and develop the code behaviour, to make easier the develop phase of the project.<br>
 
-To create a fork on GitHub is as easy as clicking the “fork” button on the repository page.
-
-<img src="https://docs.github.com/assets/images/help/repository/fork_button.jpg" alt="Fork on GitHub" width='450'>
+# Steps Organization in Develop Proccess
+1. Create, modify and delete folders<br>
+2. Browse directories from initial path<br>
+3. Navigate through the initial path to the folders and existing files<br>
+4. Upload a file to a directory<br>
+5. Search Directories and files by name<br>
+6. See the creation date, last modified, extension and size.<br>
+7. Show the icon depending the extension file or folder<br>
+8. View images, play videos and audios.<br>
+9. Move files to trash and delete from it<br>
+10. Make a chart of sizes for each type of fyle<br>
 
 ## Technologies used
 
@@ -52,21 +51,11 @@ To create a fork on GitHub is as easy as clicking the “fork” button on the r
 
 \* PHP
 
-## Project delivery
+\* BOOTSTRAP
 
-To deliver this project you must follow the steps indicated in the document:
+## Images
 
-- [Submitting a solution](https://www.notion.so/Submitting-a-solution-524dab1a71dd4b96903f26385e24cdb6)
-
-- You must include the project documentation in PDF format.
-- You must include a presentation in PDF format explaining:
-  - Comparison of the original design (Wireframe) with the final result of the project
-  - Comparison of the use case diagram with the actions that the user can finally perform
-  - Comparison of the original use case diagram with the final user actions
-  - What lessons you’ve learned during this project
-  - What problems have you encountered when developing this project?
-  - How you have organized and distributed the tasks
-
+<img src ="./screenshootFyleSystem.png">
 
 ## Resources
 
@@ -74,3 +63,8 @@ To deliver this project you must follow the steps indicated in the document:
 - [PHP FileSystem W3C](https://www.w3schools.com/php/php_ref_filesystem.asp)
 - [PHP FileSystem Oficial](https://www.php.net/manual/es/book.filesystem.php)
 - [README Guidelines Example](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
+
+## Contributors
+
+<a href="https://github.com/DogSoulDev">Javier Fernandez</a><br>
+<a href="https://github.com/JcarlosCabello1991">Juan Carlos Cabello</a><br>
